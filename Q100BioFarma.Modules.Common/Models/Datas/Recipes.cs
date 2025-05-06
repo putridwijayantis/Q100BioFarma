@@ -21,6 +21,8 @@ public class Recipes : IEntity, IEntityRegister
     public DateTime? DeletedAt { get; set; }
 
     public string Name { get; set; }
+    
+    public string? Description { get; set; }
 
     public void RegisterEntities(ModelBuilder modelbuilder)
     {
@@ -32,22 +34,22 @@ public class Recipes : IEntity, IEntityRegister
                 .HasColumnName("id")
                 .ValueGeneratedOnAdd();
 
-            entity.Property<Guid?>(x => x.CreatedBy)
+            entity.Property(x => x.CreatedBy)
                 .HasColumnName("created_by");
 
-            entity.Property<Guid?>(x => x.UpdatedBy)
+            entity.Property(x => x.UpdatedBy)
                 .HasColumnName("updated_by");
 
-            entity.Property<Guid?>(x => x.DeletedBy)
+            entity.Property(x => x.DeletedBy)
                 .HasColumnName("deleted_by");
 
-            entity.Property<DateTime?>(x => x.CreatedAt)
+            entity.Property(x => x.CreatedAt)
                 .HasColumnName("created_at");
 
-            entity.Property<DateTime?>(x => x.UpdatedAt)
+            entity.Property(x => x.UpdatedAt)
                 .HasColumnName("updated_at");
 
-            entity.Property<DateTime?>(x => x.DeletedAt)
+            entity.Property(x => x.DeletedAt)
                 .HasColumnName("deleted_at");
 
             entity.HasQueryFilter(x => x.DeletedAt == null);
@@ -55,6 +57,9 @@ public class Recipes : IEntity, IEntityRegister
             entity.Property(x => x.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
+            
+            entity.Property(x => x.Description)
+                .HasColumnName("description");
 
             entity.ToTable("recipes");
         });

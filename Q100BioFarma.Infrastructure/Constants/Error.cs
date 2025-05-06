@@ -11,4 +11,12 @@ public class Error
             "ERROR",
             exMessage);
     }
+    
+    public static Exception CustomErrorBadRequest(string exMessage)
+    {
+        throw new HttpResponseLibraryException(HttpStatusCodes.BAD_REQUEST,
+            HttpStatusCodes.BAD_REQUEST,
+            "ERROR",
+            exMessage);
+    }
 }

@@ -12,4 +12,29 @@ public class RecipesRepository : RepositoryBase<Recipes>, IRecipesRepository
         var data = await dbSet.ToListAsync();
         return data;
     }
+
+    public async Task<Recipes?> GetById(Guid id)
+    {
+        return await dbSet.FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task AddOrUpdate(Recipes model)
+    {
+        var data = await dbSet.FirstOrDefaultAsync(x => x.Id == model.Id);
+        if (data == null)
+        {
+            await dbSet.AddAsync(model);
+        }
+        else
+        {
+            data.Name = model.Name;
+            data.Description = model.Description;
+            dbSet.Update(data);
+        }
+    }
+
+    public async Task Delete(Recipes model)
+    {
+        dbSet.Remove(model);
+    }
 }

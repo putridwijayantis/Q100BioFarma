@@ -1,5 +1,6 @@
 using Q100BioFarma.Infrastructur;
 using Q100BioFarma.Infrastructur.Contracts;
+using Q100BioFarma.Modules.Common.Mapper;
 using Q100BioFarma.Modules.Common.Services.Contracts;
 using Q100BioFarma.Modules.Common.Services.Repositories;
 
@@ -19,7 +20,7 @@ public class AddModulesCommon : IConfigureServicesAction
 
         Configuration = builder.Build();
 
-        // services.AddAutoMapper(typeof(CommonProfiles));
+        services.AddAutoMapper(typeof(CommonProfiles));
         services.AddScoped<IRecipesService, RecipesService>();
     }
 }
