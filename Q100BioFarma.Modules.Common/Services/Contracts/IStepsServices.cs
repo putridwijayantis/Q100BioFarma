@@ -12,4 +12,9 @@ public interface IStepsServices
     ///     Add Step
     /// </summary>
     Task<MessageDto> AddStep(Guid recipeId, StepRequest payload);
+    
+    /// <summary>
+    ///     Add Sub Step
+    /// </summary>
+    Task<MessageDto> AddSubStep(Guid stepId, StepRequest payload);
 }

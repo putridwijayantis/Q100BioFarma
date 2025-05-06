@@ -33,4 +33,19 @@ public class StepsService : IStepsServices
         
         return new MessageDto("Success", "Step added.");
     }
+
+    public async Task<MessageDto> AddSubStep(Guid stepId, StepRequest payload)
+    {
+        var newData = new SubSteps
+        {
+            StepId = stepId,
+            Name = payload.Name,
+            Ordering = payload.Ordering
+        };
+        
+        await _iStorage.GetRepository<ISubStepRepository>().AddOrUpdate(newData);
+        await _iStorage.SaveAsync();
+        
+        return new MessageDto("Success", "Sub Step added.");
+    }
 }

@@ -4,7 +4,7 @@ using Q100BioFarma.Database.Framework;
 
 namespace Q100BioFarma.Modules.Common.Models.Datas;
 
-public class Steps : IEntity, IEntityRegister
+public class SubSteps : IEntity, IEntityRegister
 {
     public Guid Id { get; set; }
 
@@ -22,17 +22,15 @@ public class Steps : IEntity, IEntityRegister
 
     public string Name { get; set; }
     
-    public Guid RecipeId { get; set; }
+    public Guid StepId { get; set; }
     
     public int Ordering { get; set; }
     
-    public Recipes Recipe { get; set; }
-    
-    public List<SubSteps> SubSteps { get; set; }
+    public Steps Steps { get; set; }
     
     public void RegisterEntities(ModelBuilder modelbuilder)
     {
-        modelbuilder.Entity<Steps>(entity =>
+        modelbuilder.Entity<SubSteps>(entity =>
         {
             entity.HasKey(x => x.Id);
 
@@ -64,17 +62,17 @@ public class Steps : IEntity, IEntityRegister
                 .HasMaxLength(255)
                 .HasColumnName("name");
             
-            entity.Property(x => x.RecipeId)
-                .HasColumnName("recipe_id");
+            entity.Property(x => x.StepId)
+                .HasColumnName("step_id");
             
-            entity.HasOne(e => e.Recipe)
-                .WithMany(e => e.Steps)
-                .HasForeignKey(e => e.RecipeId);
+            entity.HasOne(e => e.Steps)
+                .WithMany(e => e.SubSteps)
+                .HasForeignKey(e => e.StepId);
             
             entity.Property(x => x.Ordering)
                 .HasColumnName("ordering");
 
-            entity.ToTable("steps");
+            entity.ToTable("sub_steps");
         });
     }
 }

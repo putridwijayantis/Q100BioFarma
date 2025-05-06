@@ -32,4 +32,19 @@ public class StepsController : Controller
         }
         
     }
+    
+    [HttpPost("{stepId}/sub-step")]
+    public async Task<IActionResult> AddSubStep(Guid stepId, [FromBody] StepRequest payload)
+    {
+        try
+        {
+            var data = await _stepsServices.AddSubStep(stepId, payload);
+            return Ok(data);
+        }
+        catch (HttpResponseLibraryException ex)
+        {
+            return StatusCode(ex.Code, new ResponseDto(ex.Code, new MessageDto(ex.Title, ex.Message), null));
+        }
+        
+    }
 }
