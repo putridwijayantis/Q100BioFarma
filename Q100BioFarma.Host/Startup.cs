@@ -51,6 +51,7 @@ public class Startup
         
         // Dependency Injection for services
         services.AddScoped<IRecipesService, RecipesService>();
+        services.AddScoped<IStepsServices, StepsService>();
 
         services.AddHttpContextAccessor();
 

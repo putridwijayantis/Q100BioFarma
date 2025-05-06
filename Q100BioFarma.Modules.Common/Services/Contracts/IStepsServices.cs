@@ -1,0 +1,15 @@
+using Q100BioFarma.Infrastructur.Dtos;
+using Q100BioFarma.Modules.Common.Dto.Requests;
+
+namespace Q100BioFarma.Modules.Common.Services.Contracts;
+
+/// <summary>
+///     Steps Service Contracts
+/// </summary>
+public interface IStepsServices
+{
+    /// <summary>
+    ///     Add Step
+    /// </summary>
+    Task<MessageDto> AddStep(Guid recipeId, StepRequest payload);
+}

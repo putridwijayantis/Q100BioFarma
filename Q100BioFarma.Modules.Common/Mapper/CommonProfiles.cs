@@ -10,5 +10,6 @@ public class CommonProfiles : Profile
     {
         CreateMap<Recipes, RecipesResponse>().ReverseMap();
 
+        CreateMap<Steps, StepsResponse>().ReverseMap();
     }
 }

@@ -7,4 +7,6 @@ public class RecipesResponse
     public string Name { get; set; }
     
     public string Description { get; set; }
+    
+    public List<StepsResponse> Steps { get; set; }
 }

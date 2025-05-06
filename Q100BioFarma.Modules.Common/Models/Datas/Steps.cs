@@ -4,7 +4,7 @@ using Q100BioFarma.Database.Framework;
 
 namespace Q100BioFarma.Modules.Common.Models.Datas;
 
-public class Recipes : IEntity, IEntityRegister
+public class Steps : IEntity, IEntityRegister
 {
     public Guid Id { get; set; }
 
@@ -22,13 +22,15 @@ public class Recipes : IEntity, IEntityRegister
 
     public string Name { get; set; }
     
-    public string? Description { get; set; }
+    public Guid RecipeId { get; set; }
     
-    public List<Steps> Steps { get; set; }
-
+    public int Ordering { get; set; }
+    
+    public Recipes Recipe { get; set; }
+    
     public void RegisterEntities(ModelBuilder modelbuilder)
     {
-        modelbuilder.Entity<Recipes>(entity =>
+        modelbuilder.Entity<Steps>(entity =>
         {
             entity.HasKey(x => x.Id);
 
@@ -60,10 +62,17 @@ public class Recipes : IEntity, IEntityRegister
                 .HasMaxLength(255)
                 .HasColumnName("name");
             
-            entity.Property(x => x.Description)
-                .HasColumnName("description");
+            entity.Property(x => x.RecipeId)
+                .HasColumnName("recipe_id");
+            
+            entity.HasOne(e => e.Recipe)
+                .WithMany(e => e.Steps)
+                .HasForeignKey(e => e.RecipeId);
+            
+            entity.Property(x => x.Ordering)
+                .HasColumnName("ordering");
 
-            entity.ToTable("recipes");
+            entity.ToTable("steps");
         });
     }
 }

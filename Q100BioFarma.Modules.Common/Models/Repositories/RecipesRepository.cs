@@ -15,7 +15,7 @@ public class RecipesRepository : RepositoryBase<Recipes>, IRecipesRepository
 
     public async Task<Recipes?> GetById(Guid id)
     {
-        return await dbSet.FirstOrDefaultAsync(x => x.Id == id);
+        return await dbSet.Include(x => x.Steps).FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task AddOrUpdate(Recipes model)
