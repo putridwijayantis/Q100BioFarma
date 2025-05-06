@@ -9,9 +9,13 @@ public class CommonProfiles : Profile
     public CommonProfiles()
     {
         CreateMap<Recipes, RecipesResponse>().ReverseMap();
+        
+        CreateMap<Recipes, RecipeListResponse>().ReverseMap();
 
         CreateMap<Steps, StepsResponse>().ReverseMap();
         
         CreateMap<SubSteps, SubStepsResponse>().ReverseMap();
+        
+        CreateMap<Parameters, ParameterResponse>().ReverseMap();
     }
 }

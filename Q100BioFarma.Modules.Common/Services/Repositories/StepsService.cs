@@ -48,4 +48,20 @@ public class StepsService : IStepsServices
         
         return new MessageDto("Success", "Sub Step added.");
     }
+
+    public async Task<MessageDto> AddParameter(Guid stepId, ParameterRequest payload)
+    {
+        var newData = new Parameters
+        {
+            StepId = stepId,
+            Name = payload.Name,
+            Type = payload.Type,
+            Description = payload.Description
+        };
+        
+        await _iStorage.GetRepository<IParameterRepository>().AddOrUpdate(newData);
+        await _iStorage.SaveAsync();
+        
+        return new MessageDto("Success", "Parameter added.");
+    }
 }

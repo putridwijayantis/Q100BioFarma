@@ -47,4 +47,19 @@ public class StepsController : Controller
         }
         
     }
+    
+    [HttpPost("{stepId}/parameter")]
+    public async Task<IActionResult> AddParameter(Guid stepId, [FromBody] ParameterRequest payload)
+    {
+        try
+        {
+            var data = await _stepsServices.AddParameter(stepId, payload);
+            return Ok(data);
+        }
+        catch (HttpResponseLibraryException ex)
+        {
+            return StatusCode(ex.Code, new ResponseDto(ex.Code, new MessageDto(ex.Title, ex.Message), null));
+        }
+        
+    }
 }

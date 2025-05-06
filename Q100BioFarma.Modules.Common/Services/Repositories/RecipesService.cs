@@ -22,15 +22,15 @@ public class RecipesService : IRecipesService
         _iMapper = iMapper;
     }
     
-    public async Task<List<RecipesResponse>> GetAll()
+    public async Task<List<RecipeListResponse>> GetAll()
     {
         var data = await _iStorage.GetRepository<IRecipesRepository>().GetAllData();
-        return _iMapper.Map<List<RecipesResponse>>(data);
+        return _iMapper.Map<List<RecipeListResponse>>(data);
     }
 
     public async Task<RecipesResponse> GetById(Guid id)
     {
-        var data = await _iStorage.GetRepository<IRecipesRepository>().GetById(id);
+        var data = await _iStorage.GetRepository<IRecipesRepository>().GetDetail(id);
         if (data == null) throw Error.CustomErrorBadRequest("The given id does not exist.");
         return _iMapper.Map<RecipesResponse>(data);
     }

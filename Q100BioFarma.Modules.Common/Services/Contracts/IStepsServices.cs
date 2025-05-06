@@ -17,4 +17,9 @@ public interface IStepsServices
     ///     Add Sub Step
     /// </summary>
     Task<MessageDto> AddSubStep(Guid stepId, StepRequest payload);
+    
+    /// <summary>
+    ///     Add Parameter
+    /// </summary>
+    Task<MessageDto> AddParameter(Guid stepId, ParameterRequest payload);
 }

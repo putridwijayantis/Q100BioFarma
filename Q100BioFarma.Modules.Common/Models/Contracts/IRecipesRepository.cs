@@ -19,6 +19,12 @@ public interface IRecipesRepository : IRepository
     Task<Recipes?> GetById(Guid id);
     
     /// <summary>
+    /// Get Detail
+    /// </summary>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+    Task<Recipes?> GetDetail(Guid id);
+    
+    /// <summary>
     /// Add or Update
     /// </summary>
     /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>

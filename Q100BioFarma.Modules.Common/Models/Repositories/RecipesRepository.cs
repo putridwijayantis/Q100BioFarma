@@ -7,6 +7,8 @@ namespace Q100BioFarma.Modules.Common.Models.Repositories;
 
 public class RecipesRepository : RepositoryBase<Recipes>, IRecipesRepository
 {
+    private IRecipesRepository _recipesRepositoryImplementation;
+
     public async Task<List<Recipes>> GetAllData()
     {
         var data = await dbSet.ToListAsync();
@@ -15,7 +17,17 @@ public class RecipesRepository : RepositoryBase<Recipes>, IRecipesRepository
 
     public async Task<Recipes?> GetById(Guid id)
     {
-        return await dbSet.Include(x => x.Steps).ThenInclude(y => y.SubSteps).FirstOrDefaultAsync(x => x.Id == id);
+        return await dbSet.FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task<Recipes?> GetDetail(Guid id)
+    {
+        return await dbSet
+            .Include(x => x.Steps)
+            .ThenInclude(y => y.SubSteps)
+            .Include(x => x.Steps)
+            .ThenInclude(y => y.Parameters)
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task AddOrUpdate(Recipes model)

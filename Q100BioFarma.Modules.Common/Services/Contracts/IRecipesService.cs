@@ -13,7 +13,7 @@ public interface IRecipesService
     /// <summary>
     ///     Get All
     /// </summary>
-    Task<List<RecipesResponse>> GetAll();
+    Task<List<RecipeListResponse>> GetAll();
     
     /// <summary>
     ///     Get By Id
