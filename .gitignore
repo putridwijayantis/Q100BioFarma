@@ -1,0 +1,16 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.github
+.vscode
+.vs
+deploy.sh
+test.sh
+Test.bat
+reports
+coverage.opencover.xml
+logs/**
+logs/
+log/

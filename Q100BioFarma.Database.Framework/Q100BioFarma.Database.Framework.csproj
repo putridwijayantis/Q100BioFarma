@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-Q100BioFarma.Database.Framework-571943e3-0ec5-4294-9818-48c21ae96b1c</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Q100BioFarma.Database.Abstract\Q100BioFarma.Database.Abstract.csproj" />
+      <ProjectReference Include="..\Q100BioFarma.Infrastructure\Q100BioFarma.Infrastructure.csproj" />
+    </ItemGroup>
+</Project>

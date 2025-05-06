@@ -1,0 +1,6 @@
+@Q100BioFarma_HostAddress = http://localhost:5285
+
+GET {{Q100BioFarma_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
